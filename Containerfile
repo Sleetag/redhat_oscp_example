@@ -1,5 +1,7 @@
-FROM nodejs:20
+# Import the base image as UBI-Nodejs 20 image
+FROM registry.access.redhat.com/ubi9/nodejs-20:1-54.1724037697
 
+ENV NODE_ENV=validation
 # Set the working directory to /project
 WORKDIR /project
 
