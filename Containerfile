@@ -1,4 +1,4 @@
-FROM nodejs:20.12.2
+FROM nodejs:20
 
 # Set the working directory to /project
 WORKDIR /project
