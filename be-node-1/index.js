@@ -1,11 +1,15 @@
+const { Client } = require('pg');
+
 const express = require('express')
 const app = express()
 const port = 3000
-import pg from 'pg'
-const uri = require("../utils/pgConn").getPGConnectionString();
-const { Client } = pg
- 
-const client = new Client(uri)
+
+const { PGUSER, PGPASSWORD, PGSERVER } = process.env;
+const PGDB = "sampledb";
+
+
+
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
@@ -18,6 +22,13 @@ app.listen(port, () => {
 })
 app.get("/health", async (req, res) => {
     let dbStatus = false;
+    const client = new Client({
+        user: PGUSER,
+        password: PGPASSWORD,
+        host: PGSERVER,
+        port: 5432,
+        database: PGDB,
+      })
     console.log("Testing database connection");
     client.connect((err) => {
         if(err)
