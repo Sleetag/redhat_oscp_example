@@ -36,7 +36,8 @@ app.get("/health", async (req, res) => {
             res.send({
                 server: true,
                 database: false,
-                err: err
+                err: err,
+                conString:connectionString
                 }).status(501);
         }
         else{
