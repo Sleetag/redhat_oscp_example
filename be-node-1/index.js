@@ -39,6 +39,7 @@ app.get("/health", async (req, res) => {
                 err: err,
                 conString:connectionString
                 }).status(501);
+                client.end()
         }
         else{
             console.log(`Database status is ${dbStatus}`);
@@ -46,7 +47,8 @@ app.get("/health", async (req, res) => {
             server: true,
             database: true
             }).status(200);
+            client.end()
         }
      })
-     client.end()
+     
 })
