@@ -7,7 +7,7 @@ const port = 3000
 const { PGUSER, PGPASSWORD, PGSERVER, NODE_ENV} = process.env;
 const PGDB = "sampledb";
 
-const connectionString = `postgresql://${PGUSER}:${PGPASSWORD}@${PGSERVER}/${PGDB}`
+const connectionString = `postgresql://${PGUSER}:${PGPASSWORD}@${PGSERVER}:5432/${PGDB}`
 //if (NODE_ENV === undefined)
 //{
 //    const connectionString = `postgresql://${PGUSER}:${PGPASSWORD}@${PGSERVER}/${PGDB}`
