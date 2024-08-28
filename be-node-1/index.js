@@ -4,10 +4,14 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-const { PGUSER, PGPASSWORD, PGSERVER } = process.env;
+const { PGUSER, PGPASSWORD, PGSERVER, NODE_ENV} = process.env;
 const PGDB = "sampledb";
 
-
+const connectionString = `postgresql://${PGUSER}:${PGPASSWORD}@${PGSERVER}/${PGDB}`
+//if (NODE_ENV === undefined)
+//{
+//    const connectionString = `postgresql://${PGUSER}:${PGPASSWORD}@${PGSERVER}/${PGDB}`
+//}
 
 
 app.get('/', (req, res) => {
@@ -22,13 +26,7 @@ app.listen(port, () => {
 })
 app.get("/health", async (req, res) => {
     let dbStatus = false;
-    const client = new Client({
-        user: PGUSER,
-        password: PGPASSWORD,
-        host: PGSERVER,
-        port: 5432,
-        database: PGDB,
-      })
+    const client = new Client(connectionString)
     console.log("Testing database connection");
     client.connect((err) => {
         if(err)
